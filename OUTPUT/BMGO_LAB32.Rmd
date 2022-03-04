@@ -1,0 +1,66 @@
+---
+title: "API DATA MÉXICO"
+author: "Midhely García"
+date: "3/3/2022"
+output: html_document
+---
+
+
+Laboratorio 32 - API DATAMEX
+
+Objetivo: Crear dataframes utilizando información del portal DATA MÊXICO
+------------------------------------------------------------------------------------------------------
+En este ejercicio vamos a:
+1. Cargar datos provenientes de api data México
+2. Transformar una lista en un dataframe
+3. Exportar el dataframe a archivo csv
+
+Asegurarse de tener instalado la paquetería "jsonlite"
+install.packages("jsonlite")
+
+Llamar a la librería
+```{r}
+library(jsonlite)
+```
+
+Buscar el archivo descargado de dataMéxicocon el comando:
+file.choose()
+
+Copiar la liga del archivo json que se descargo de data México
+```{r}
+datos_api2 <- fromJSON("/Users/midhely/Desktop/BMGO_LAB32/INPUT/Municipality-Year-records.json")
+```
+
+Revisar que clase de datos se generan (lista)
+```{r}
+class(datos_api2)
+```
+
+Revisar que nombre tiene la lista
+```{r}
+names(datos_api2)
+```
+
+Visualizar la lista de datos
+correr lo siguiente:
+
+```{r}
+head(datos_api2[["data"]])
+```
+
+Trasformar una lista en data frame
+```{r}
+final_API <- as.data.frame((datos_api2[["data"]]))
+```
+
+Revisar la clase de archivo generado
+```{r}
+class(final_API)
+```
+
+Exportar el data frame en formato csv
+```{r}
+write.csv(final_API, file = "final_API.CSV")
+```
+
+
